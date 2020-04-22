@@ -23,16 +23,17 @@ namespace Portfolio
             {
                 headNode = NodeToAdd;
                 tailNode = NodeToAdd;
+                Console.WriteLine("updated head node");
             }
             else 
             {
-                NodeToAdd.nextNode = tailNode;
+                tailNode.nextNode = NodeToAdd;
                 tailNode = NodeToAdd;
             }
             queueLength += 1;
         }
 
-        public void dequeue() 
+        public void Dequeue() 
         {
             Console.WriteLine("Node dequeued: " + headNode.nodeData);
             headNode = headNode.nextNode;

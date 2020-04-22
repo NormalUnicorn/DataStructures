@@ -30,7 +30,7 @@ namespace Portfolio
             }
 
             queue.print();
-            queue.dequeue();
+            queue.Dequeue();
             queue.print();
 
 
