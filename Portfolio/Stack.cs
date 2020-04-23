@@ -19,6 +19,7 @@ namespace Portfolio
             stackLength = 0;
         }
 
+        //If the stack is empty, it adds the node to the start and end, otherwise it updates the end of the stack
         public void Push(Node NodeToAdd)
         {
             if (headNode == null) 
@@ -34,6 +35,7 @@ namespace Portfolio
             stackLength += 1;
         }
 
+        //Takes the node data from the tail node, and removes it from the 
         public void Pull() 
         {
             Console.WriteLine("Value pulled: " + tailNode.nodeData);
