@@ -101,7 +101,7 @@ namespace Portfolio
             if (removePos != 0 && removePos <= listLength) 
             {
                 Node currentNode = headNode;
-                for(int i = 1; i<removePos; i++) 
+                for(int i = 0; i<removePos-1; i++) 
                 {
                     currentNode = currentNode.nextNode;
                 }
