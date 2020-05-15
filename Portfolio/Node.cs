@@ -22,6 +22,7 @@ namespace Portfolio
             previousNode = null;
             parentNode = null;
             childNode = null;
+            nodeWeight = 0;
         }
     }
 }

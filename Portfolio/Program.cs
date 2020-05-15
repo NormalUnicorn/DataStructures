@@ -14,34 +14,38 @@ namespace Portfolio
 
 
             //Stack testing
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("Please input a node value to add to the stack: ");
-                string UserInput = Console.ReadLine();
-                myStack.Push(CreateNode(UserInput));
-                Console.WriteLine("Node added");
+            //Console.WriteLine("Stack Testing: ");
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Console.WriteLine("Please input a node value to add to the stack: ");
+            //    string UserInput = Console.ReadLine();
+            //    myStack.Push(CreateNode(UserInput));
+            //    Console.WriteLine("Node added");
 
-            }
+            //}
 
-            myStack.print();
-            myStack.Pull();
-            myStack.print();
+            //myStack.print();
+            //myStack.Pull();
+            //myStack.print();
 
 
             //Queue testing
-            for (int i = 0; i < 5; i++)
-            {
-                string UserInput = Console.ReadLine();
-                myQueue.Enqueue(CreateNode(UserInput));
-                Console.WriteLine("Node Added");
-            }
+            //Console.WriteLine("Queue Testing: ");
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Console.WriteLine("Please input a node value to add to the queue: ");
+            //    string UserInput = Console.ReadLine();
+            //    myQueue.Enqueue(CreateNode(UserInput));
+            //    Console.WriteLine("Node Added");
+            //}
 
-            myQueue.print();
-            myQueue.Dequeue();
-            myQueue.print();
+            //myQueue.print();
+            //myQueue.Dequeue();
+            //myQueue.print();
 
 
             //Linked list testing
+            Console.WriteLine("LL testing: ");
             //Creating nodes to add to list
             myLinkedList.appendStart(CreateNode("3"));
             myLinkedList.appendStart(CreateNode("8"));
@@ -52,17 +56,22 @@ namespace Portfolio
             Console.WriteLine("Before removal calls");
             myLinkedList.print();
 
-            myLinkedList.removeStart();
-            myLinkedList.removeEnd();
+            //myLinkedList.removeStart();
+            //myLinkedList.removeEnd();
 
-            myLinkedList.append(CreateNode("11"), 5); //Change the int here to change where the value gets appended
+            myLinkedList.append(CreateNode("11"), 2); //Change the int here to change where the value gets appended
 
             Console.WriteLine("After removal calls");
-
             myLinkedList.print();
 
-
-
+            //DoubleLinkedList Testing
+            Console.WriteLine("DoubleLinkedList testing: ");
+            myDoubleLinkedList.appendStart(CreateNode("5"));
+            myDoubleLinkedList.print();
+            myDoubleLinkedList.appendStart(CreateNode("7"));
+            myDoubleLinkedList.appendStart(CreateNode("4"));
+            myDoubleLinkedList.append(CreateNode("11"), 2);
+            myDoubleLinkedList.print();
 
             //used to create node instances to add data to structures that use nodes
             Node CreateNode(string InputData) 

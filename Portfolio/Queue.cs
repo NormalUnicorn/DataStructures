@@ -45,7 +45,6 @@ namespace Portfolio
         //Prints out the contents of the queue
         public void print() 
         {
-            //Local var used to go through the nodes + node values of the queue
             Node currentNode = headNode; //Local var to go through nodes + node values of queue
             Console.WriteLine("Printing Queue: ");
 

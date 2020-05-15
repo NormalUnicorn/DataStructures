@@ -93,12 +93,12 @@ namespace Portfolio
                 removeStart();
             }
 
-            if(removePos >= listLength) 
+            if(removePos >listLength) 
             {
                 removeEnd();
             }
 
-            if (removePos != 0 && removePos < listLength-1) 
+            if (removePos != 0 && removePos <= listLength) 
             {
                 Node currentNode = headNode;
                 for(int i = 1; i<removePos; i++) 
