@@ -68,7 +68,7 @@ namespace Portfolio
             {
                 Node currentNode = headNode; //Local var to go through nodes in list
                 Node previousListNode = headNode;
-                for (int i = 1; i < appendPos; i++)
+                for (int i = 0; i < appendPos-1; i++)
                 {
                     previousListNode = currentNode;
                     currentNode = currentNode.nextNode;
@@ -110,12 +110,12 @@ namespace Portfolio
                 removeStart();
             }
 
-            if (removePos > listLength)
+            if (removePos >= listLength)
             {
                 removeEnd();
             }
 
-            if (removePos != 0 && removePos <= listLength)
+            if (removePos != 0 && removePos < listLength)
             {
                 Node currentNode = headNode;
                 for (int i = 0; i < removePos-1; i++)

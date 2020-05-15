@@ -56,7 +56,7 @@ namespace Portfolio
             if(appendPos != 0 && appendPos < listLength-1) 
             {
                 Node currentNode = headNode; //Local var to go through nodes in list
-                for(int i=1; i<appendPos; i++) 
+                for(int i=0; i<appendPos-1; i++) 
                 {
                     currentNode = currentNode.nextNode;
                 }
