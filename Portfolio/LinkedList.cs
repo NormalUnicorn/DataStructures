@@ -7,13 +7,13 @@ namespace Portfolio
     class LinkedList
     {
         public Node headNode { get; set; }
-        //public Node tailNode { get; set; }
+        public Node tailNode { get; set; }
         public int listLength { get; set; }
 
         public LinkedList() 
         {
             headNode = null;
-            //tailNode = null;
+            tailNode = null;
             listLength = 0;
         }
 
@@ -27,11 +27,14 @@ namespace Portfolio
         public void appendEnd(Node NodeToAdd) 
         {
             Node currentNode = headNode;
+
             while(currentNode.nextNode!=null) 
             {
                 currentNode = currentNode.nextNode;
             }
+
             currentNode.nextNode = NodeToAdd;
+            tailNode = NodeToAdd;
             listLength += 1;
         }
 
@@ -56,6 +59,7 @@ namespace Portfolio
                 }
                 NodeToAdd.nextNode = currentNode.nextNode;
                 currentNode.nextNode = NodeToAdd;
+                listLength += 1;
             }
         }
 
@@ -63,13 +67,21 @@ namespace Portfolio
         { 
             if(removePos == 0) 
             {
-                headNode = headNode.nextNode;
-                listLength -= 1;
+                removeStart();
             }
 
-            if(removePos > listLength) 
-            { 
-                
+            if(removePos >= listLength) 
+            {
+                removeEnd();
+            }
+
+            if (removePos != 0 && removePos < listLength-1) 
+            {
+                Node currentNode = headNode;
+                for(int i = 1; i<removePos; i++) 
+                {
+                    currentNode = currentNode.nextNode;
+                }
             }
         }
 
@@ -80,12 +92,20 @@ namespace Portfolio
         }
 
         public void removeEnd() 
-        { 
-            
+        {
+            Node CurrentNode = headNode;
+            while(CurrentNode.nextNode != tailNode) 
+            {
+                CurrentNode = CurrentNode.nextNode;
+            }
+            CurrentNode.nextNode = null;
+            listLength -= 1;
         }
 
         public void print() 
         {
+            Console.WriteLine("Priting linked list:");
+
             Node currentNode = headNode;
             while(currentNode.nextNode != null) 
             {
