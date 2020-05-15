@@ -43,10 +43,11 @@ namespace Portfolio
             stackLength -= 1;
         }
 
+
         public void print() 
         {
+            Node currentNode = tailNode; //local var to go through nodes + node data in stack
 
-            Node currentNode = tailNode;
             Console.WriteLine("Printing stack: ");
 
             if (headNode == null)
