@@ -91,18 +91,21 @@ namespace Portfolio
                 removeStart();
             }
 
-            if(removePos >listLength) 
+            else if(removePos > listLength) 
             {
                 removeEnd();
             }
 
-            if (removePos != 0 && removePos <= listLength) 
+            else  
             {
-                Node currentNode = headNode;
+                Node previousListNode = headNode, currentNode = headNode;
                 for(int i = 0; i<removePos-1; i++) 
                 {
+                    previousListNode = currentNode;
                     currentNode = currentNode.nextNode;
                 }
+                previousListNode.nextNode = currentNode.nextNode;
+                listLength -= 1;
             }
         }
 

@@ -35,7 +35,8 @@ namespace Portfolio
             stackLength += 1;
         }
 
-        //Takes the node data from the tail node, and removes it from the 
+        //Takes the node data from the tail node, and removes it from the stack
+        //Really this should return the value instead of just printing it. Too bad!
         public void Pull() 
         {
             Console.WriteLine("Value pulled: " + tailNode.nodeData);

@@ -92,6 +92,7 @@ namespace Portfolio
         public void removeStart()
         {
             headNode = headNode.nextNode;
+            headNode.previousNode = null;
             listLength -= 1;
         }
 
@@ -99,11 +100,13 @@ namespace Portfolio
         public void removeEnd()
         {
             Node CurrentNode = headNode;
+
             while (CurrentNode.nextNode != tailNode)
             {
                 CurrentNode = CurrentNode.nextNode;
             }
             CurrentNode.nextNode = null;
+            tailNode = CurrentNode;
             listLength -= 1;
         }
 
@@ -115,18 +118,24 @@ namespace Portfolio
                 removeStart();
             }
 
-            if (removePos >= listLength)
+            else if (removePos >= listLength)
             {
                 removeEnd();
             }
 
-            if (removePos != 0 && removePos < listLength)
+            else
             {
+                Node previousListNode = headNode;
                 Node currentNode = headNode;
                 for (int i = 0; i < removePos-1; i++)
                 {
+                    previousListNode = currentNode;
                     currentNode = currentNode.nextNode;
                 }
+
+                previousListNode.nextNode = currentNode.nextNode;
+                previousListNode.nextNode.previousNode = previousListNode;
+
             }
         }
 

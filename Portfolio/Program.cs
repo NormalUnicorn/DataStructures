@@ -60,6 +60,7 @@ namespace Portfolio
             //myLinkedList.removeEnd();
 
             myLinkedList.append(CreateNode("11"), 1); //Change the int here to change where the value gets appended
+            myLinkedList.remove(7);
 
             Console.WriteLine("After removal calls");
             myLinkedList.print();
@@ -67,10 +68,12 @@ namespace Portfolio
             //DoubleLinkedList Testing
             Console.WriteLine("DoubleLinkedList testing: ");
             myDoubleLinkedList.appendStart(CreateNode("5"));
-            myDoubleLinkedList.print();
             myDoubleLinkedList.appendStart(CreateNode("7"));
             myDoubleLinkedList.appendStart(CreateNode("4"));
             myDoubleLinkedList.append(CreateNode("11"), 1);
+            myDoubleLinkedList.appendEnd(CreateNode("8"));
+            myDoubleLinkedList.print();
+            myDoubleLinkedList.remove(5);
             myDoubleLinkedList.print();
 
             //used to create node instances to add data to structures that use nodes
