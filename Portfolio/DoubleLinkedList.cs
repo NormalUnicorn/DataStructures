@@ -58,13 +58,19 @@ namespace Portfolio
             {
                 appendStart(NodeToAdd);
             }
-
-            if (appendPos >= listLength)
+            else if (appendPos >= listLength)
             {
                 appendEnd(NodeToAdd);
             }
-
-            if (appendPos != 0 && appendPos < listLength - 1)
+            else if(appendPos == 1) 
+            {
+                Node tempNode = headNode.nextNode;
+                headNode.nextNode = NodeToAdd;
+                NodeToAdd.nextNode = tempNode;
+                tempNode.previousNode = NodeToAdd;
+                NodeToAdd.previousNode = headNode;
+            }
+            else
             {
                 Node currentNode = headNode; //Local var to go through nodes in list
                 Node previousListNode = headNode;
@@ -72,10 +78,9 @@ namespace Portfolio
                 {
                     previousListNode = currentNode;
                     currentNode = currentNode.nextNode;
-
                 }
 
-                NodeToAdd.nextNode = currentNode.nextNode;
+                NodeToAdd.nextNode = currentNode;
                 NodeToAdd.previousNode = previousListNode;
                 previousListNode.nextNode = NodeToAdd;
                 currentNode.previousNode = NodeToAdd;

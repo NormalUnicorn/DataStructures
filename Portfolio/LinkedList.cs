@@ -47,13 +47,11 @@ namespace Portfolio
             {
                 appendStart(NodeToAdd);
             }
-
-            if(appendPos >= listLength) 
+            else if(appendPos >= listLength) 
             {
                 appendEnd(NodeToAdd);
             }
-
-            if(appendPos != 0 && appendPos < listLength-1) 
+            else 
             {
                 Node currentNode = headNode; //Local var to go through nodes in list
                 for(int i=0; i<appendPos-1; i++) 
