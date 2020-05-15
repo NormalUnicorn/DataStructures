@@ -6,5 +6,9 @@ namespace Portfolio
 {
     class BubbleSort
     {
+        public int[] unsortedList { get; set; }
+        public int[] sortedList { get; set; }
+
+        
     }
 }
