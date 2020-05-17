@@ -6,25 +6,21 @@ namespace Portfolio
 {
     class InsertionSort
     {
-        public int[] unsortedValues { get; set; }
+        public int[] unsortedValues { get; set; } = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         public int[] sortedValues { get; set; }
 
-        public int[] Sort()
+
+
+        public InsertionSort(int arrayLen) 
         {
-            for (int i = 0; i < unsortedValues.Length; i++)
-            {
-                int unsortedVal = unsortedValues[unsortedValues.Length - 1];
-                for (int j = 0; j < sortedValues.Length; j++) 
-                { 
-                    if(unsortedVal < sortedValues[j]) 
-                    {
-                        return null;
-                    }
-                }
-
-            }
-            return null;
+            sortedValues = new int[arrayLen];
         }
-
+        public void print(Array numbers)
+        {
+            foreach (int i in numbers)
+            {
+                Console.WriteLine(i); //https://docs.microsoft.com/en-us/dotnet/api/system.array?redirectedfrom=MSDN&view=netcore-3.1
+            }
+        }
     }
 }

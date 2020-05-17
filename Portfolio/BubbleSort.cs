@@ -11,7 +11,7 @@ namespace Portfolio
         public void sort(int reccursion) 
         {
             reccursion--;
-            int currentVal, nextVal, tempVal;
+            int currentVal, nextVal, tempVal; //Current array val, next array val to compare, and temp val for swapping vals
             if(reccursion >= 0) 
             {             
                 for(int i = 0; i < numbers.Length-1; i++) 
@@ -22,10 +22,12 @@ namespace Portfolio
                     if(currentVal>nextVal) 
                     {
                         tempVal = nextVal;
-                        numbers[i + 1] = currentVal;
+                        numbers[i+1] = currentVal;
                         numbers[i] = tempVal;
                     }
                 }
+                Console.WriteLine("Sorting...");
+                print();
                 sort(reccursion);
             }
         }

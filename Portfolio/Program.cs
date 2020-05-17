@@ -6,14 +6,17 @@ namespace Portfolio
     {
         static void Main(string[] args)
         {
-            int testing = 4; //Change this to change what gets tested
+            int testing = 5; //Change this to change what gets tested
             
             //Creating instances for testing
             Stack myStack = new Stack();
             Queue myQueue = new Queue();
+
             LinkedList myLinkedList = new LinkedList();
             DoubleLinkedList myDoubleLinkedList = new DoubleLinkedList();
+
             BubbleSort myBubbleSort = new BubbleSort();
+            InsertionSort myInsertionSort = new InsertionSort(10);
 
             //Stack testing
             if(testing == 0)
@@ -114,6 +117,11 @@ namespace Portfolio
                 myBubbleSort.print();
             }
             
+            else if(testing == 5) 
+            {
+                myInsertionSort.print(myInsertionSort.sortedValues);
+            }
+
             //used to create node instances to add data to structures that use nodes
             Node CreateNode(string InputData) 
             {
@@ -123,6 +131,7 @@ namespace Portfolio
 
                 return newNode;
             }
+
         }
     }
 }
