@@ -6,7 +6,7 @@ namespace Portfolio
 {
     class BubbleSort
     {
-        public int[] numbers { get; set; } = new int[10] {10,9,8,7,6,5,4,3,2,1 };
+        public int[] numbers { get; set; } = new int[10] {10,9,8,7,6,5,4,3,2,1}; //vals to be sorted
 
         public void sort(int reccursion) 
         {
@@ -30,10 +30,12 @@ namespace Portfolio
             }
         }
 
-        public BubbleSort() 
-        {
-            int[] numbers = new int[10] { 15, 7, 1, 33, 18, 4, 9, 101, 21 , 12 };
-        }
-        
+        public void print() 
+        { 
+            foreach(int i in numbers) 
+            {
+                Console.WriteLine(i); //https://docs.microsoft.com/en-us/dotnet/api/system.array?redirectedfrom=MSDN&view=netcore-3.1
+            }
+        }       
     }
 }
