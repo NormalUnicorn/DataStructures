@@ -6,8 +6,7 @@ namespace Portfolio
 {
     class BubbleSort
     {
-        public int[] unsortedList { get; set; }
-        public int[] sortedList { get; set; }
+        public int[] numbers { get; set; } = new int[10] {10,9,8,7,6,5,4,3,2,1 };
 
         public void sort(int reccursion) 
         {
@@ -15,23 +14,26 @@ namespace Portfolio
             int currentVal, nextVal, tempVal;
             if(reccursion >= 0) 
             {             
-                for(int i = 0; i < unsortedList.Length-1; i++) 
+                for(int i = 0; i < numbers.Length-1; i++) 
                 {
-                    currentVal = unsortedList[i];
-                    nextVal = unsortedList[i+1];
+                    currentVal = numbers[i];
+                    nextVal = numbers[i+1];
                 
                     if(currentVal>nextVal) 
                     {
                         tempVal = nextVal;
-                        unsortedList[i + 1] = currentVal;
-                        unsortedList[i] = tempVal;
+                        numbers[i + 1] = currentVal;
+                        numbers[i] = tempVal;
                     }
                 }
                 sort(reccursion);
             }
-
         }
 
+        public BubbleSort() 
+        {
+            int[] numbers = new int[10] { 15, 7, 1, 33, 18, 4, 9, 101, 21 , 12 };
+        }
         
     }
 }

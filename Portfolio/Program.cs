@@ -6,8 +6,9 @@ namespace Portfolio
     {
         static void Main(string[] args)
         {
-            int testing = 0; //Change this to change what gets tested
-
+            int testing = 4; //Change this to change what gets tested
+            
+            //Creating instances for testing
             Stack myStack = new Stack();
             Queue myQueue = new Queue();
             LinkedList myLinkedList = new LinkedList();
@@ -49,9 +50,9 @@ namespace Portfolio
                 myQueue.print();            
             }
 
+            //Linked list testing
             else if(testing == 2) 
             { 
-                //Linked list testing
                 Console.WriteLine("LL testing: ");
                 //Creating nodes to add to list
                 myLinkedList.appendStart(CreateNode("3"));
@@ -73,9 +74,9 @@ namespace Portfolio
                 myLinkedList.print();            
             }
 
+            //DoubleLinkedList Testing
             else if(testing == 3) 
             { 
-                //DoubleLinkedList Testing
                 Console.WriteLine("DoubleLinkedList testing: ");
                 myDoubleLinkedList.appendStart(CreateNode("5"));
                 myDoubleLinkedList.appendStart(CreateNode("7"));
@@ -87,9 +88,20 @@ namespace Portfolio
                 myDoubleLinkedList.print();           
             }
 
+            //Bubble sort testing
             else if (testing == 4) 
-            { 
-            
+            {
+                //Unsorted
+                for (int i = 0; i < myBubbleSort.numbers.Length - 1; i++)
+                {
+                    Console.WriteLine(myBubbleSort.numbers[i]);
+                }
+                Console.WriteLine(myBubbleSort.numbers);
+                myBubbleSort.sort(myBubbleSort.numbers.Length);
+                foreach(int i in myBubbleSort.numbers) 
+                {
+                    Console.WriteLine(i);
+                }
             }
             
             //used to create node instances to add data to structures that use nodes
