@@ -9,6 +9,8 @@ namespace Huffman
     {
         public List<Node> values { get; set; } = new List<Node>();
 
+        public List<Node> sortedVals;
+
         public void getValues(string text) 
         {
             char currentChar;
@@ -44,16 +46,39 @@ namespace Huffman
             }
         }
 
-        public void Sort() 
+        public void firstSort() 
         { 
-            
+            sortedVals = values.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c
+        }
+        
+        public void sorts() 
+        {
+            Node newNode = new Node();
+            newNode.lNode = sortedVals[0];
+            newNode.rNode = sortedVals[1];
+            newNode.nodeWeight = newNode.lNode.nodeWeight + newNode.rNode.nodeWeight;
+            sortedVals.Remove(sortedVals[1]);
+            sortedVals.Remove(sortedVals[0]);
+
+            sortedVals.Append(newNode);
+
+            sortedVals = sortedVals.OrderBy(node => node.nodeWeight).ToList();
         }
 
         public void print() 
         {
-            for (int i = 0; i < values.Count - 1; i++)
+            Console.WriteLine("Unsorted: ");
+            Console.WriteLine("List len: " + values.Count);
+            for (int i = 0; i < values.Count; i++)
             {
                 Console.WriteLine("Node Value: " + values[i].nodeValue + " Node Weight: " + values[i].nodeWeight);
+            }
+
+            Console.WriteLine("Sorted: ");
+            Console.WriteLine("List len: " + sortedVals.Count);
+            for (int i = 0; i < sortedVals.Count; i++)
+            {
+                Console.WriteLine("Node Value: " + sortedVals[i].nodeValue + " Node Weight: " + sortedVals[i].nodeWeight);
             }
         }
     }

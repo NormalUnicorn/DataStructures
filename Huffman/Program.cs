@@ -9,9 +9,16 @@ namespace Huffman
         {
             HuffmanLogic myHuffman = new HuffmanLogic();
 
-            myHuffman.getValues("Sphinx of black quartz, judge my vow!");
+            myHuffman.getValues("Something doesn't seem right with this code, and I'm unsure as to what it could be!");
+
+            myHuffman.firstSort();
             myHuffman.print();
-            myHuffman.values.Sort(new Comparison<StatInfo>(x, y) => int.Compare(x.nodeWeight, y.nodeWeight)));
+            myHuffman.sorts();
+            myHuffman.print();
+            myHuffman.sorts();
+            myHuffman.sorts();
+            myHuffman.sorts();
+            myHuffman.print();
 
         }
     }
