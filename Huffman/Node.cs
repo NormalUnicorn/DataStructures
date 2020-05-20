@@ -9,8 +9,8 @@ namespace Huffman
         public Node parentNode { get; set; } //parent node
         public Node lNode { get; set; }//left child node
         public Node rNode { get; set; }//right child node
-        public int nodeWeight { get; set;}//node weight
-
+        public int nodeWeight { get; set; }//node weight
+        public char nodeValue { get; set; }
 
         public Node() 
         {

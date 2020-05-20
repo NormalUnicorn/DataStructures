@@ -12,5 +12,11 @@ namespace Huffman
         {
             headNode = null;
         }
+
+
+        public void createTree(Node[] values)  
+        { 
+            
+        }
     }
 }
