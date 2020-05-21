@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Huffman
 {
@@ -8,17 +9,26 @@ namespace Huffman
         static void Main(string[] args)
         {
             HuffmanLogic myHuffman = new HuffmanLogic();
+            Tree myTree = new Tree();
+            string inputString = "Something doesn't seem right with this code, and I'm unsure as to what it could be!";
+            List<int> compressed = new List<int>();
+            
 
-            myHuffman.getValues("Something doesn't seem right with this code, and I'm unsure as to what it could be!");
+            myHuffman.getValues(inputString);
 
-            myHuffman.firstSort();
+            myHuffman.sort(0, myHuffman.values.Count);
             myHuffman.print();
-            myHuffman.sorts();
+            myHuffman.sort(1, myHuffman.values.Count);
             myHuffman.print();
-            myHuffman.sorts();
-            myHuffman.sorts();
-            myHuffman.sorts();
-            myHuffman.print();
+            myTree.createTree(myHuffman.sortedVals.ToArray());
+
+            for(int i = 0; i < inputString.Length-1; i++) 
+            {
+                Console.WriteLine("Compressing...");
+                char currentChar = inputString[i];
+                compressed.AddRange(myTree.depthFirstSearch(currentChar).ToArray());
+            }
+            Console.WriteLine(compressed);
 
         }
     }
