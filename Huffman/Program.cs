@@ -24,9 +24,10 @@ namespace Huffman
 
             for(int i = 0; i < inputString.Length-1; i++) 
             {
-                Console.WriteLine("Compressing...");
+                //Console.WriteLine("Compressing...");
                 char currentChar = inputString[i];
-                compressed.AddRange(myTree.depthFirstSearch(currentChar).ToArray());
+                compressed.AddRange(myTree.DFS(currentChar).ToArray());
+                Console.WriteLine(currentChar + " has been compressed");
             }
             Console.WriteLine(compressed);
 

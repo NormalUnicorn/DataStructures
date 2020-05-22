@@ -18,23 +18,27 @@ namespace Huffman
 
             //Console.WriteLine("Going through string");
 
+            //for each char in input string
             for(int i = 0; i < text.Length-1; i++) 
             {
                 currentChar = text[i];
                 flag = false;
                 Console.WriteLine(values.Count);
 
+                //for each node that already exists with a value
                 for(int j = 0; j<values.Count-1; j++) 
                 { 
 
+                    //increase weight of current node if it shares a value
                     if(currentChar == values[j].nodeValue) 
                     {
-                        flag = true;
-                        values[j].nodeWeight++;
+                        flag = true; //Don't need to create new node
+                        values[j].nodeWeight++; 
                     }
 
                 }
 
+                //Add a new node if needed
                 if (flag == false)
                 {
                     Console.WriteLine("Adding new node");
@@ -57,18 +61,24 @@ namespace Huffman
                 if(counter != 2) 
                 { 
                     counter = sortedVals.Count;
-                    Node newNode = new Node();
-                    newNode.lNode = sortedVals[0];
-                    newNode.rNode = sortedVals[1];
-                    newNode.nodeWeight = newNode.lNode.nodeWeight + newNode.rNode.nodeWeight;
-                    newNode.nodeValue = '\0';
-                    sortedVals.Remove(sortedVals[0]);
-                    sortedVals.Remove(sortedVals[1]);
+                    Node newNode = new Node(); //New node to be added to tree
 
-                    sortedVals.Add(newNode);
+                    newNode.lNode = sortedVals[0]; //Setting lNode
+                    newNode.rNode = sortedVals[1]; //Setting rNode
 
-                    sortedVals = sortedVals.OrderBy(node => node.nodeWeight).ToList();
-                    sort(1, sortedVals.Count);
+                    newNode.lNode.parentNode = newNode; //Setting lNode parent
+                    newNode.rNode.parentNode = newNode; //Setting rNode parent
+
+                    newNode.nodeWeight = newNode.lNode.nodeWeight + newNode.rNode.nodeWeight; //Setting node weight to sum of direct child nodes
+
+                    sortedVals.Remove(sortedVals[0]); //Removing lNode from list to prevent duplication
+                    sortedVals.Remove(sortedVals[1]); //Removing rNode from list to prevent duplication
+
+                    sortedVals.Add(newNode); //Adding the node back in to be sorted 
+
+                    sortedVals = sortedVals.OrderBy(node => node.nodeWeight).ToList(); //Resorting list, with new Node
+
+                    sort(1, sortedVals.Count); //Reccursion
                 } 
             }
         }
