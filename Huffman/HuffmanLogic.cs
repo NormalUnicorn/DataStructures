@@ -11,6 +11,7 @@ namespace Huffman
 
         public List<Node> sortedVals;
 
+        //Function to work out the frequency(weight) of each character given an input
         public void getValues(string text) 
         {
             char currentChar;
@@ -41,7 +42,7 @@ namespace Huffman
                 //Add a new node if needed
                 if (flag == false)
                 {
-                    Console.WriteLine("Adding new node");
+                    Console.WriteLine("Adding new node");//debugging
                     Node newNode = new Node();
                     newNode.nodeWeight = 1;
                     newNode.nodeValue = currentChar;
@@ -50,6 +51,8 @@ namespace Huffman
             }
         }
         
+        //this could go in huffman or tree, as huffman is reliant on the tree.
+        //Sorts a list of Nodes by weight, and combines the two lowest node weights as children of a new node
         public void sort(int type, int counter) 
         {
             if(type == 0) 
@@ -83,6 +86,7 @@ namespace Huffman
             }
         }
 
+        //debugging
         public void print() 
         {
             Console.WriteLine("Unsorted: ");

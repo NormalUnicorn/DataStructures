@@ -7,78 +7,23 @@ namespace Huffman
     class Tree
     {
         public Node headNode { get; set; }
-        public List<Node> visited { get; set; }
-
 
         public Tree() 
         {
             headNode = new Node();
         }
 
-
+        //function that combines the two final nodes to make one tree, could have been in huffman. Too bad!
         public void createTree(Node[] values)  
         {
-            headNode.lNode = values[0];
-            headNode.rNode = values[1];
-        }
-        
-        public Stack<int> depthFirstSearch(char charToFind) 
-        {
-            //Todo, create stack and then use stack to help traverse tree to find correct node.
-            Node currentNode = headNode;
-            List<Node> visited = new List<Node>();
-            Stack<int> output = new Stack<int>();
-            bool flag = true;
+            headNode.lNode = values[0]; //Set lNode of headnode to the first Node in array
+            headNode.rNode = values[1]; //Set rNode of headnode to the second Node in array
 
-            //while not found value
-            while(flag) 
-            {
-                //check if current node has a value
-                if(currentNode.nodeValue != '\0') 
-                {
-                    //if it's the correct value then stop the loop, and 
-                    if(currentNode.nodeValue == charToFind) 
-                    {
-                        Console.WriteLine("got here too");
-                        flag = false;
-                    }
-                    else if(visited.Contains(currentNode.lNode) == false) 
-                    {
-                        currentNode = currentNode.lNode;
-                        output.Push(0);
-                    }
-                    else if(visited.Contains(currentNode.rNode) == false) 
-                    {
-                        currentNode = currentNode.rNode;
-                        output.Push(1);
-                    }
-                    else if(visited.Contains(currentNode.lNode) && visited.Contains(currentNode.rNode)) 
-                    {
-                        output.Pop();
-                        currentNode = currentNode.parentNode;
-                    }
-                }                
-            }
-
-            return output;
+            headNode.lNode.parentNode = headNode; //Making lNode parentNode point to headNode 
+            headNode.rNode.parentNode = headNode; //Making rNode parentNode point to headNode
         }
 
-        public Node updateNode(Node currentNode, List<Node> visited) 
-        { 
-            if(visited.Contains(currentNode.lNode) == false) 
-            {
-                return currentNode.lNode;
-            }
-            else if(visited.Contains(currentNode.rNode) == false) 
-            {
-                return currentNode.rNode;
-            }
-            else 
-            {
-                return currentNode.parentNode;
-            }
-        }
-
+        //Depth first search to find a given character in the tree
         public Stack<int> DFS(char charToFind) 
         {
 
@@ -108,14 +53,18 @@ namespace Huffman
                         currentNode = currentNode.parentNode;
                         output.Pop(); //Remove the direction to this node from the stack
                     }
-                    Console.WriteLine("Checking new node: " + currentNode.nodeWeight + currentNode.nodeValue);
+                    //Console.WriteLine("Checking new node: " + currentNode.nodeWeight + currentNode.nodeValue);
                 }
 
-                if(currentNode.nodeValue == charToFind) 
-                {
-                    Console.WriteLine("Correct node found");
-                    flag = true; //Found
-                    return output;
+                //If the currentNode has a value, is it equal to the inputChar? if so, then return the stack detailing the journey across the tree.
+                if(currentNode.nodeValue!='\0') 
+                { 
+                    if(currentNode.nodeValue == charToFind) 
+                    {
+                        Console.WriteLine("Correct node found");
+                        flag = true; //Found
+                        return output;
+                    }               
                 }
                 visited.Add(currentNode);
             }
