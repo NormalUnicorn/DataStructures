@@ -7,7 +7,7 @@ namespace Huffman
     class Tree : HuffmanLogic
     {
 
-        public Node headNode { get; set; }
+        public Node headNode { get; set; } //the headnode in the tree
 
         public Tree() 
         {
@@ -28,10 +28,10 @@ namespace Huffman
         public void createTree(List<Node> nodeList) 
         {
 
-            Console.WriteLine(nodeList.Capacity);
-            Node newNode = new Node(); //create new node 
+            //Console.WriteLine(nodeList.Count);
             if(nodeList.Count > 2) 
             {
+                Node newNode = new Node(); //create new node 
 
                 newNode.lNode = nodeList[0]; //set lNode
                 newNode.rNode = nodeList[1]; //set rNode
@@ -41,29 +41,33 @@ namespace Huffman
 
                 newNode.nodeWeight = newNode.lNode.nodeWeight + newNode.rNode.nodeWeight; //create the weight value for the new node
 
-                //This cost me two sleepless nights, the issue was removing them in the wrong order. 
+                //This cost me two sleepless nights, the issue was removing them in the wrong order. very bad!
                 nodeList.RemoveAt(1);
                 nodeList.RemoveAt(0);
 
+                //Add new newNode to list of nodes again
                 nodeList.Add(newNode);
 
+                //checking it works 
                 Console.WriteLine("New node created: " + newNode.nodeWeight);
                 Console.WriteLine("Node children: \nlNode: " + newNode.lNode.nodeValue + " \nrNode: " + newNode.rNode.nodeValue);
                 Console.WriteLine("Node parents: \nlNode: " + newNode.lNode.parentNode.nodeWeight + "\nrNode: " + newNode.rNode.parentNode.nodeWeight);
 
+                //Sort the list again, with the newNode in it now
                 nodeList = sort(nodeList);
 
+                //reccursion 
                 createTree(nodeList);
             }
+
             else 
             {
-                newNode.lNode = nodeList[0];
-                newNode.rNode = nodeList[1];
+                //if there are only 2 nodes in the array, then set the children of headNode to the two remaining nodes
+                headNode.lNode = nodeList[0];
+                headNode.rNode = nodeList[1];
 
-                newNode.lNode.parentNode = newNode;
-                newNode.rNode.parentNode = newNode;
-
-                headNode = newNode;
+                headNode.lNode.parentNode = headNode;
+                headNode.rNode.parentNode = headNode;
             }
         }
 
@@ -74,7 +78,7 @@ namespace Huffman
             Node currentNode = headNode; //Start of the tree
             List<Node> visited = new List<Node>(); //List of visited nodes
             Stack<int> output = new Stack<int>(); //final output for that character
-            bool flag = false; //flag indicating bool found
+            bool flag = false; //flag indicating if node has been found
 
             while(!flag) //While not found
             {
@@ -110,7 +114,7 @@ namespace Huffman
                 }
 
                 //If the currentNode has a value, is it equal to the inputChar? if so, then return the stack detailing the journey across the tree.
-                if(currentNode.nodeValue!='\0') 
+                if(currentNode.nodeValue!='\0') //honestly don't need this first if check, not really worth it in any way at all, oh well, too bad!
                 { 
                     if(currentNode.nodeValue == charToFind) 
                     {
@@ -119,11 +123,14 @@ namespace Huffman
                         return output;
                     }               
                 }
-                visited.Add(currentNode);
+
+                visited.Add(currentNode);//update list of visited nodes 
             }
-            return new Stack<int>();
+
+            return new Stack<int>();//stack detailing the path through the tree to take
         }
 
+        //TODO, improve this
         public void decompress(string path) 
         {
             Node currentNode = headNode;
@@ -145,7 +152,7 @@ namespace Huffman
                     currentNode = currentNode.rNode;
                     //currentChar = path[counter+1];
                 }
-                if(currentChar == '3') 
+                if(currentChar == '3') //used for quick debugging
                 { 
                     Console.WriteLine(currentNode.nodeValue);
                     currentNode = headNode;
