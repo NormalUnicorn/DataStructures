@@ -127,24 +127,32 @@ namespace Huffman
         public void decompress(string path) 
         {
             Node currentNode = headNode;
-            int counter = 0;
-            char currentChar = path[counter];
+            //int counter = 0;
+            //char currentChar;
 
-            while(currentChar != '3') 
+            //Console.WriteLine("current char value: " +currentChar);
+            foreach(char currentChar in path)  
             {
                 if(currentChar == '0') 
                 {
+                    //Console.WriteLine("going left");
                     currentNode = currentNode.lNode;
-                    currentChar = path[counter++];
+                    //currentChar = path[counter+1];
                 }
 
                 if(currentChar == '1') 
                 {
                     currentNode = currentNode.rNode;
-                    currentChar = path[counter++];
+                    //currentChar = path[counter+1];
+                }
+                if(currentChar == '3') 
+                { 
+                    Console.WriteLine(currentNode.nodeValue);
+                    currentNode = headNode;
+                    //currentChar = path[counter + 1];
                 }
             }
-            Console.WriteLine(currentNode.nodeValue);
+            
         }
 
     }

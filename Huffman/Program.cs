@@ -10,10 +10,10 @@ namespace Huffman
         {
             HuffmanLogic myHuffman = new HuffmanLogic();
             Tree myTree = new Tree();
-            string inputString = "aabcdabda";
-            List<int> compressed = new List<int>();
-            string tempOut = "";
-            string output = "";
+            string inputString = "This is difficult to read due to the fact that it's vertical text, and we are used to reading left to right, horizontally";
+            string compressed = "";
+            Stack<int> tempOut = new Stack<int>();
+            string tempOutString;
             
 
             myHuffman.getValues(inputString);
@@ -32,23 +32,33 @@ namespace Huffman
             {
                 //Console.WriteLine("Compressing...");
                 char currentChar = inputString[i];
+                tempOutString = "";
 
+                tempOut = myTree.DFS(currentChar);
 
+                while(tempOut.Count != 0) 
+                {
+                    tempOutString += tempOut.Pop().ToString();
+                }
 
-                compressed.AddRange((myTree.DFS(currentChar).ToArray()));
+                tempOutString = reverseString(tempOutString);
 
-                //compressed.Add(3);
-                Console.WriteLine(currentChar + " has been compressed");
-                Console.WriteLine(myTree.DFS(currentChar).ToString());
+                compressed+=tempOutString;
+
+                compressed += "3";
+                Console.WriteLine(currentChar + " has been compressed to: " + tempOutString);
             }
             
-            for(int i = 0; i < compressed.Count; i++) 
-            {
-                output += compressed[i];
-            }
-            Console.WriteLine(output);
+            Console.WriteLine(compressed);
 
-            //myTree.decompress(output);
+            myTree.decompress(compressed);
+        }
+
+        public static string reverseString(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
         }
     }
 }
