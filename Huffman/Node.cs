@@ -11,7 +11,7 @@ namespace Huffman
         public Node rNode { get; set; }//right child node
         public int nodeWeight { get; set; }//node weight
         public char nodeValue { get; set; }
-        public int nodeID { get; set; } //debugging
+        public int nodeID { get; set; } //debugging, mayhaps? potentially?
 
         public Node() 
         {

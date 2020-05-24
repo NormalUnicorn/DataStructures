@@ -14,27 +14,51 @@ namespace Huffman
         //Function to work out the frequency(weight) of each character given an input
         public void getValues(string text) 
         {
-            char currentChar;
+            Console.WriteLine(text);
             bool flag;
+            char currentChar;
 
             //Console.WriteLine("Going through string");
 
             //for each char in input string
-            for(int i = 0; i < text.Length-1; i++) 
+
+            //foreach(char currentChar in text) 
+            //{
+            //    flag = false;
+            //    foreach(Node currentNode in values) 
+            //    { 
+            //        if(currentChar == currentNode.nodeValue)
+            //        {
+            //            flag = true;
+            //            currentNode.nodeWeight++;
+            //        }
+            //    }
+            //    if(flag == false) 
+            //    {
+            //        Node newNode = new Node();
+            //        newNode.nodeWeight = 1;
+            //        newNode.nodeValue = currentChar;
+            //        values.Add(newNode);
+            //    }
+            //}
+
+            for (int i = 0; i <= text.Length-1; i++)
             {
+                Console.WriteLine("string len: " + text.Length);
                 currentChar = text[i];
+                Console.WriteLine("currentChar: " + currentChar);
                 flag = false;
-                Console.WriteLine(values.Count);
+                Console.WriteLine("Values.count: " + values.Count);
 
                 //for each node that already exists with a value
-                for(int j = 0; j<values.Count-1; j++) 
-                { 
+                for (int j = 0; j < values.Count; j++)
+                {
 
                     //increase weight of current node if it shares a value
-                    if(currentChar == values[j].nodeValue) 
+                    if (currentChar == values[j].nodeValue)
                     {
                         flag = true; //Don't need to create new node
-                        values[j].nodeWeight++; 
+                        values[j].nodeWeight++;
                     }
 
                 }
@@ -53,37 +77,10 @@ namespace Huffman
         
         //this could go in huffman or tree, as huffman is reliant on the tree.
         //Sorts a list of Nodes by weight, and combines the two lowest node weights as children of a new node
-        public void sort(int type, int counter) 
+        public List<Node> sort(List<Node> nodeList) 
         {
-            if(type == 0) 
-            { 
-                sortedVals = values.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c                
-            }
-            else if(type == 1) 
-            { 
-                if(counter != 2) 
-                { 
-                    counter = sortedVals.Count;
-                    Node newNode = new Node(); //New node to be added to tree
-
-                    newNode.lNode = sortedVals[0]; //Setting lNode
-                    newNode.rNode = sortedVals[1]; //Setting rNode
-
-                    newNode.lNode.parentNode = newNode; //Setting lNode parent
-                    newNode.rNode.parentNode = newNode; //Setting rNode parent
-
-                    newNode.nodeWeight = newNode.lNode.nodeWeight + newNode.rNode.nodeWeight; //Setting node weight to sum of direct child nodes
-
-                    sortedVals.Remove(sortedVals[0]); //Removing lNode from list to prevent duplication
-                    sortedVals.Remove(sortedVals[1]); //Removing rNode from list to prevent duplication
-
-                    sortedVals.Add(newNode); //Adding the node back in to be sorted 
-
-                    sortedVals = sortedVals.OrderBy(node => node.nodeWeight).ToList(); //Resorting list, with new Node
-
-                    sort(1, sortedVals.Count); //Reccursion
-                } 
-            }
+            sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
+            return sortedVals;
         }
 
         //debugging

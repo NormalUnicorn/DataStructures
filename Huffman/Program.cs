@@ -10,27 +10,45 @@ namespace Huffman
         {
             HuffmanLogic myHuffman = new HuffmanLogic();
             Tree myTree = new Tree();
-            string inputString = "Something doesn't seem right with this code, and I'm unsure as to what it could be!";
+            string inputString = "aabcdabda";
             List<int> compressed = new List<int>();
+            string tempOut = "";
+            string output = "";
             
 
             myHuffman.getValues(inputString);
 
-            myHuffman.sort(0, myHuffman.values.Count);
-            myHuffman.print();
-            myHuffman.sort(1, myHuffman.values.Count);
-            myHuffman.print();
-            myTree.createTree(myHuffman.sortedVals.ToArray());
+            for (int i = 0; i < myHuffman.values.Count; i++) 
+            {
+                Console.WriteLine("Node: \nNode value: " + myHuffman.values[i].nodeValue + "\nNode weight: " + myHuffman.values[i].nodeWeight);
+            }
+            
+            myTree.createTree(myHuffman.sort(myHuffman.values));
 
-            for(int i = 0; i < inputString.Length-1; i++) 
+
+            //myTree.createTree(myHuffman.sortedVals.ToArray());
+
+            for (int i = 0; i < inputString.Length; i++)
             {
                 //Console.WriteLine("Compressing...");
                 char currentChar = inputString[i];
-                compressed.AddRange(myTree.DFS(currentChar).ToArray());
-                Console.WriteLine(currentChar + " has been compressed");
-            }
-            Console.WriteLine(compressed);
 
+
+
+                compressed.AddRange((myTree.DFS(currentChar).ToArray()));
+
+                //compressed.Add(3);
+                Console.WriteLine(currentChar + " has been compressed");
+                Console.WriteLine(myTree.DFS(currentChar).ToString());
+            }
+            
+            for(int i = 0; i < compressed.Count; i++) 
+            {
+                output += compressed[i];
+            }
+            Console.WriteLine(output);
+
+            //myTree.decompress(output);
         }
     }
 }
