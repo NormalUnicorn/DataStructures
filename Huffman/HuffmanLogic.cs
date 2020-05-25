@@ -14,41 +14,15 @@ namespace Huffman
         //Function to work out the frequency(weight) of each character given an input
         public void getValues(string text) 
         {
-            Console.WriteLine(text);
+            //Console.WriteLine(text);
             bool flag;
             char currentChar;
 
-            //Console.WriteLine("Going through string");
-
-            //for each char in input string
-
-            //foreach(char currentChar in text) 
-            //{
-            //    flag = false;
-            //    foreach(Node currentNode in values) 
-            //    { 
-            //        if(currentChar == currentNode.nodeValue)
-            //        {
-            //            flag = true;
-            //            currentNode.nodeWeight++;
-            //        }
-            //    }
-            //    if(flag == false) 
-            //    {
-            //        Node newNode = new Node();
-            //        newNode.nodeWeight = 1;
-            //        newNode.nodeValue = currentChar;
-            //        values.Add(newNode);
-            //    }
-            //}
-
+            //For each char in the string
             for (int i = 0; i <= text.Length-1; i++)
             {
-                Console.WriteLine("string len: " + text.Length);
                 currentChar = text[i];
-                Console.WriteLine("currentChar: " + currentChar);
                 flag = false;
-                Console.WriteLine("Values.count: " + values.Count);
 
                 //for each node that already exists with a value
                 for (int j = 0; j < values.Count; j++)
@@ -66,7 +40,7 @@ namespace Huffman
                 //Add a new node if needed
                 if (flag == false)
                 {
-                    Console.WriteLine("Adding new node");//debugging
+                    //Console.WriteLine("Adding new node");//debugging
                     Node newNode = new Node();
                     newNode.nodeWeight = 1;
                     newNode.nodeValue = currentChar;
@@ -101,5 +75,4 @@ namespace Huffman
             }
         }
     }
-
 }

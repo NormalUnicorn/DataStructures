@@ -49,19 +49,17 @@ namespace Huffman
 
                 compressed+=tempOutString;
 
-                //used for bodged decompressing :)
-                compressed += "3";
                 Console.WriteLine("The optimal huffman code for " + currentChar + " is: " + tempOutString); 
             }
             
             //output the compressed string
             Console.WriteLine(compressed);
 
+            //decompress string to check correct output
             myTree.decompress(compressed);
-            myTree.decompression(compressed);
         }
 
-        //
+        //https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string
         public static string reverseString(string s)
         {
             char[] charArray = s.ToCharArray();

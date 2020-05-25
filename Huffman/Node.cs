@@ -21,6 +21,5 @@ namespace Huffman
             nodeWeight = 0; 
             nodeValue = '\0'; //chars cannot be null, so '\0 is the equivilant'
         }
-
     }
 }

@@ -79,6 +79,7 @@ namespace Huffman
             List<Node> visited = new List<Node>(); //List of visited nodes
             Stack<int> output = new Stack<int>(); //final output for that character
             bool flag = false; //flag indicating if node has been found
+            bool showTreeTraversal = false; //make this true if you would like to build the tree by hand, will show how the code is moving around the tree(warning, will spam console)
 
             while(!flag) //While not found
             {
@@ -89,25 +90,37 @@ namespace Huffman
                     //Checking to see if we have been to the left node before, and if the left node actually exists
                     if (visited.Contains(currentNode.lNode) == false && currentNode.lNode != null)
                     {
-                        Console.WriteLine("Going left");
+
+                        if(showTreeTraversal) 
+                        { 
+                            Console.WriteLine("Going left");
+                        }
+
                         currentNode = currentNode.lNode;
-                        //Console.WriteLine("Node Value: " + currentNode.nodeValue);
                         output.Push(0); //Add 0 to represent left on tree
                     }
                     //If we can't go left, check if we can go right
                     else if (visited.Contains(currentNode.rNode) == false && currentNode.rNode != null)
                     {
-                        Console.WriteLine("Going right");
+
+                        if(showTreeTraversal) 
+                        { 
+                            Console.WriteLine("Going right");
+                        }
+
                         currentNode = currentNode.rNode;
-                        //Console.WriteLine("Node value: " + currentNode.nodeValue);
                         output.Push(1); //Add 1 to represent right on tree
                     }
                     //If we can't go left or right, then simply go back to the parent 
                     else
                     {
-                        Console.WriteLine("Going up");
+
+                        if(showTreeTraversal) 
+                        { 
+                            Console.WriteLine("Going up");
+                        }
+
                         currentNode = currentNode.parentNode;
-                        //Console.WriteLine("Node Value: " + currentNode.nodeValue);
                         output.Pop(); //Remove the direction to this node from the stack
                     }
                     //Console.WriteLine("Checking new node: " + currentNode.nodeWeight + currentNode.nodeValue);
@@ -118,7 +131,10 @@ namespace Huffman
                 { 
                     if(currentNode.nodeValue == charToFind) 
                     {
-                        Console.WriteLine("Correct node found");
+                        if(showTreeTraversal) 
+                        { 
+                            Console.WriteLine("Correct node found");
+                        }
                         flag = true; //Found
                         return output;
                     }               
@@ -130,39 +146,8 @@ namespace Huffman
             return new Stack<int>();//stack detailing the path through the tree to take
         }
 
-        //TODO, improve this
-        public void decompress(string path) 
-        {
-            Node currentNode = headNode;
-            //int counter = 0;
-            //char currentChar;
-
-            //Console.WriteLine("current char value: " +currentChar);
-            foreach(char currentChar in path)  
-            {
-                if(currentChar == '0') 
-                {
-                    //Console.WriteLine("going left");
-                    currentNode = currentNode.lNode;
-                    //currentChar = path[counter+1];
-                }
-
-                if(currentChar == '1') 
-                {
-                    currentNode = currentNode.rNode;
-                    //currentChar = path[counter+1];
-                }
-                if(currentChar == '3') //used for quick debugging
-                { 
-                    Console.WriteLine(currentNode.nodeValue);
-                    currentNode = headNode;
-                    //currentChar = path[counter + 1];
-                }
-            }
-            
-        }
-
-        public string decompression(string path) 
+        //better decompression, use this one instead of the horrible bodged one up top
+        public string decompress(string path) 
         {
             string output = "";
             Node currentNode = headNode;
