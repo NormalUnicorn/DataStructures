@@ -49,9 +49,9 @@ namespace Huffman
                 nodeList.Add(newNode);
 
                 //checking it works 
-                Console.WriteLine("New node created: " + newNode.nodeWeight);
-                Console.WriteLine("Node children: \nlNode: " + newNode.lNode.nodeValue + " \nrNode: " + newNode.rNode.nodeValue);
-                Console.WriteLine("Node parents: \nlNode: " + newNode.lNode.parentNode.nodeWeight + "\nrNode: " + newNode.rNode.parentNode.nodeWeight);
+                //Console.WriteLine("New node created: " + newNode.nodeWeight);
+                //Console.WriteLine("Node children: \nlNode: " + newNode.lNode.nodeValue + " \nrNode: " + newNode.rNode.nodeValue);
+                //Console.WriteLine("Node parents: \nlNode: " + newNode.lNode.parentNode.nodeWeight + "\nrNode: " + newNode.rNode.parentNode.nodeWeight);
 
                 //Sort the list again, with the newNode in it now
                 nodeList = sort(nodeList);
@@ -127,6 +127,7 @@ namespace Huffman
                         currentNode = currentNode.rNode;
                         output.Push(1); //Add 1 to represent right on tree
                     }
+
                     //If we can't go left or right, then simply go back to the parent 
                     else
                     {
@@ -167,7 +168,7 @@ namespace Huffman
         {
 
             string output = ""; //output text
-            Node currentNode = headNode; //Start at the head of the tree duh
+            Node currentNode = headNode; //Start at the head of the tree
 
             foreach(char currentChar in path) 
             { 
@@ -185,7 +186,6 @@ namespace Huffman
                 //Now check if the node we moved to has a value or not, and if it does then add the value to the output and start at the head again
                 if (currentNode.nodeValue != '\0') 
                 {
-                    Console.WriteLine("currentVal: " + currentNode.nodeValue);
                     output += currentNode.nodeValue;
 
                     currentNode = headNode;

@@ -56,23 +56,5 @@ namespace Huffman
             sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
             return sortedVals;
         }
-
-        //debugging
-        public void print() 
-        {
-            Console.WriteLine("Unsorted: ");
-            Console.WriteLine("List len: " + values.Count);
-            for (int i = 0; i < values.Count; i++)
-            {
-                Console.WriteLine("Node Value: " + values[i].nodeValue + " Node Weight: " + values[i].nodeWeight);
-            }
-
-            Console.WriteLine("Sorted: ");
-            Console.WriteLine("List len: " + sortedVals.Count);
-            for (int i = 0; i < sortedVals.Count; i++)
-            {
-                Console.WriteLine("Node Value: " + sortedVals[i].nodeValue + " Node Weight: " + sortedVals[i].nodeWeight);
-            }
-        }
     }
 }
