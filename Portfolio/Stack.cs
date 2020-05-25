@@ -9,7 +9,6 @@ namespace Portfolio
         public Node headNode { get; set; }
         public Node tailNode { get; set; }
         public int stackLength { get; set; }
-
         public int staticLen { get; set; }
 
         public Stack() 

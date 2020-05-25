@@ -63,11 +63,26 @@ namespace Huffman
             else 
             {
                 //if there are only 2 nodes in the array, then set the children of headNode to the two remaining nodes
+
                 headNode.lNode = nodeList[0];
-                headNode.rNode = nodeList[1];
+                
+                //this is incase there is only one letter in the string, there won't be two nodes so would throw an error
+                try
+                { 
+                    headNode.rNode = nodeList[1];
+                }
+                catch (ArgumentOutOfRangeException outOfRange) 
+                {
+                    Console.WriteLine("The text to compress only contains one letter");
+                }
 
                 headNode.lNode.parentNode = headNode;
-                headNode.rNode.parentNode = headNode;
+
+                //If there is only one letter to compress, then there is only one node
+                if(headNode.rNode!= null) 
+                {
+                    headNode.rNode.parentNode = headNode;
+                }
             }
         }
 
@@ -79,7 +94,7 @@ namespace Huffman
             List<Node> visited = new List<Node>(); //List of visited nodes
             Stack<int> output = new Stack<int>(); //final output for that character
             bool flag = false; //flag indicating if node has been found
-            bool showTreeTraversal = false; //make this true if you would like to build the tree by hand, will show how the code is moving around the tree(warning, will spam console)
+            bool showTreeTraversal = true; //make this true if you would like to build the tree by hand, will show how the code is moving around the tree(warning, will spam console)
 
             while(!flag) //While not found
             {
@@ -97,6 +112,7 @@ namespace Huffman
                         }
 
                         currentNode = currentNode.lNode;
+                        //Console.WriteLine("Node Value: " + currentNode.nodeValue);
                         output.Push(0); //Add 0 to represent left on tree
                     }
                     //If we can't go left, check if we can go right
@@ -151,11 +167,15 @@ namespace Huffman
         {
             string output = "";
             Node currentNode = headNode;
-            foreach (char currentChar in path)
+            char currentChar = ' ';
+            for(int i=0; i<path.Length;i++)
             {
+                currentChar = path[i];
+                Console.WriteLine("current char: " + currentChar);
                 if (currentNode.nodeValue != '\0') 
                 {
                     output += currentNode.nodeValue;
+                    Console.WriteLine("output: " + output);
                     currentNode = headNode;
                 }
                 else if (currentChar == '0') 
@@ -167,7 +187,7 @@ namespace Huffman
                     currentNode = currentNode.rNode;
                 }
             }
-            Console.WriteLine(output);
+            Console.WriteLine("output: " + output);
             return output;
         }
 

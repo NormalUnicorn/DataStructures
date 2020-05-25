@@ -10,7 +10,7 @@ namespace Huffman
         {
             HuffmanLogic myHuffman = new HuffmanLogic();
             Tree myTree = new Tree();
-            string inputString = "This is difficult to read due to the fact that it's vertical text, and we are used to reading left to right, horizontally"; //text to be compressed
+            string inputString = "aa"; //text to be compressed
             string compressed = ""; //final compressed text
             Stack<int> tempOut = new Stack<int>(); //this is needed because ms return stacks in reverse chronological order
             string tempOutString; //this is needed because ms return stacks in reverse chronological order, I could have used my own stack implementation but too bad!
