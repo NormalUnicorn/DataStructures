@@ -199,7 +199,7 @@ namespace Huffman
                     currentNode = headNode;
                 }
             }
-            Console.WriteLine("output: " + output);
+            Console.WriteLine("output: \n" + output);
             return output;
         }
     }

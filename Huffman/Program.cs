@@ -20,11 +20,15 @@ namespace Huffman
 
             List<char> compressedCharsList = new List<char>(); //List used to keep track of what Chars have already had their huffman code printed out
 
+            //I had planned to use the physical file sizes to see how much compression had happened, but didn't work. :(
+            string inputTextFilePath = @"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\inputTextFile.txt";
+            string outputTextFilePath = @"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\outputCompressedText.txt";
+
             //I read text from a file, so I need a try catch incase the user inputs a file path that doesn't exist
             try 
             { 
                 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-read-from-a-text-file
-                string inputTextFile = System.IO.File.ReadAllText(@"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\inputTextFile.txt"); //Update the path to read text from a text file
+                string inputTextFile = System.IO.File.ReadAllText(inputTextFilePath); //Update the inputTextFilePath to read text from a text file
 
                 myHuffman.getValues(inputTextFile); //create nodes of the chars from input string, change the paramater to inputString or inputTextFile
 
@@ -72,7 +76,9 @@ namespace Huffman
                 Console.WriteLine(compressed);
 
                 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
-                System.IO.File.WriteAllText(@"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\outputCompressedText.txt", compressed); //update the path for the output file
+                System.IO.File.WriteAllText(outputTextFilePath, compressed); //update the outputTextFilePath for the output file
+
+
 
                 //decompress string to check correct output
                 myTree.decompress(compressed);
