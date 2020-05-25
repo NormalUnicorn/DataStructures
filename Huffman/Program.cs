@@ -61,7 +61,8 @@ namespace Huffman
 
                     if(compressedCharsList.Contains(currentChar) == false) 
                     { 
-                        Console.WriteLine("The optimal huffman code for " + currentChar + " is: " + tempOutString); 
+                        Console.WriteLine("The optimal huffman code for " + currentChar + " is: " + tempOutString);
+                        Console.WriteLine("This is a compression ratio of: " + tempOutString.Length + " bits:8 bits");
                     }
 
                     compressedCharsList.Add(currentChar);//Prevents duplicate huffman codes for a char being printed :)

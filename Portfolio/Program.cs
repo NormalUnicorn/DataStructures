@@ -7,7 +7,7 @@ namespace Portfolio
     {
         static void Main(string[] args)
         {
-            int testing = 0; //Change this to change what gets tested
+            int testing = 3; //Change this to change what gets tested
             
             //Creating instances for testing
             Stack myStack = new Stack();
@@ -27,7 +27,7 @@ namespace Portfolio
                 
                 //Creating and adding nodes to stack
                 //I'm aware that an issue is caused by entering only 1 node to the array, as the tail node is not set
-                for (int i = 0; i < 1; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     Console.WriteLine("Please input a node value to add to the stack: ");
                     string UserInput = Console.ReadLine();
@@ -41,11 +41,11 @@ namespace Portfolio
                 myStack.Peek();
                 myStack.print();
                 testList.AddRange(myStack.toArray());
+                //printing out array :)
                 foreach(string text in testList) 
                 {
                     Console.WriteLine("list text: " + text);
                 }
-
             }
 
             //Queue testing
@@ -64,7 +64,14 @@ namespace Portfolio
 
                 myQueue.print();
                 myQueue.Dequeue();
-                myQueue.print();            
+                myQueue.peek();
+                myQueue.print();
+                testList.AddRange(myQueue.toArary());
+
+                foreach(string text in testList) 
+                {
+                    Console.WriteLine("list text: " + text);
+                }
             }
 
             //Linked list testing

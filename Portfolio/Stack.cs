@@ -38,41 +38,34 @@ namespace Portfolio
         //Really this should return the value instead of just printing it. Too bad!
         public string Peek() 
         {
-            Console.WriteLine("Value pulled: " + tailNode.nodeData);
-            return tailNode.nodeData;
+            if(stackLength > 0)
+            { 
+                return tailNode.nodeData;
+            }
+            else 
+            {
+                Console.WriteLine("The stack is empty, there is no value to peek at!");
+            }
+            return null;
         }
 
         public string Pull() 
         {
-            string nodeData = tailNode.nodeData;
-            tailNode = tailNode.nextNode;
-            //Console.WriteLine("new node: " + tailNode.nodeData);
-            stackLength--;
-            return nodeData;
-        }
-
-
-        //I didn't like MS' version having the array in reverse chronological order, ran into the issue with my huffman
-        public string[] toArray() 
-        {
-            staticLen = stackLength; //updating len with the pull method, so need a static version of it
-            string[] stackValues = new string[staticLen];
-            string valuePulled;
-
-            //for each node in the stack
-            for(int i=0;i<staticLen;i++) 
-            {
-                valuePulled = this.Pull();
-                //Console.WriteLine("Stack len: " + stackLength);
-                stackValues[i] = valuePulled;
-                //Console.WriteLine("Value pulled: " + valuePulled);
-            }
-
             
-            Array.Reverse(stackValues);
-            return stackValues;
+            if(stackLength>0) 
+            { 
+                string nodeData = tailNode.nodeData;
+                tailNode = tailNode.nextNode;
+                //Console.WriteLine("new node: " + tailNode.nodeData);
+                stackLength--;
+                return nodeData;
+            }
+            else 
+            {
+                Console.WriteLine("The stack is empty, there is no value to pull!");
+            }
+            return null;
         }
-
 
         public void print() 
         {
@@ -93,6 +86,27 @@ namespace Portfolio
                 }
             }
 
+        }
+
+        //I didn't like MS' version having the array in reverse chronological order, ran into issue over this with my huffman, very bad!
+        public string[] toArray() 
+        {
+            staticLen = stackLength; //updating len with the pull method, so need a static version of it
+            string[] stackArray = new string[staticLen];
+            string valuePulled;
+
+            //for each node in the stack
+            for(int i=0;i<staticLen;i++) 
+            {
+                valuePulled = this.Pull();
+                //Console.WriteLine("Stack len: " + stackLength);
+                stackArray[i] = valuePulled;
+                //Console.WriteLine("Value pulled: " + valuePulled);
+            }
+
+            
+            Array.Reverse(stackArray);
+            return stackArray;
         }
     }
 }

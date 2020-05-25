@@ -89,41 +89,48 @@ namespace Portfolio
         }
 
         //Removes first node in list
-        public void removeStart()
+        public string removeStart()
         {
+            string returnVal = headNode.nodeData;
             headNode = headNode.nextNode;
             headNode.previousNode = null;
             listLength -= 1;
+            return returnVal;
         }
 
         //Removes last node in list
-        public void removeEnd()
+        public string removeEnd()
         {
+            string returnVal;
             Node CurrentNode = headNode;
 
             while (CurrentNode.nextNode != tailNode)
             {
                 CurrentNode = CurrentNode.nextNode;
             }
+            returnVal = tailNode.nodeData;
             CurrentNode.nextNode = null;
             tailNode = CurrentNode;
             listLength -= 1;
+            return returnVal;
         }
 
+
         //Used to check which node to remove from the list, either call Start/End or go through the list to correct point
-        public void remove(int removePos)
+        public string remove(int removePos)
         {
+            string returnVal;
             if (removePos == 0)
             {
-                removeStart();
+                returnVal = removeStart();
             }
 
             else if (removePos >= listLength)
             {
-                removeEnd();
+                returnVal = removeEnd();
             }
 
-            else
+            else if(removePos>0)
             {
                 Node previousListNode = headNode;
                 Node currentNode = headNode;
@@ -133,10 +140,16 @@ namespace Portfolio
                     currentNode = currentNode.nextNode;
                 }
 
+                returnVal = currentNode.nodeData;
+
                 previousListNode.nextNode = currentNode.nextNode;
                 previousListNode.nextNode.previousNode = previousListNode;
-
             }
+            else 
+            {
+                return null;
+            }
+            return returnVal;
         }
 
         //Prints out all the values in the list

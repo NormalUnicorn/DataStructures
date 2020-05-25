@@ -9,6 +9,7 @@ namespace Portfolio
         public Node headNode { get; set; }
         public Node tailNode { get; set; }
         public int queueLength { get; set; }
+        public int staticLen { get; set; }
 
         public Queue() 
         {
@@ -35,11 +36,33 @@ namespace Portfolio
         }
 
         //Removes the top value from the queue
-        public void Dequeue() 
+        public string Dequeue() 
         {
-            Console.WriteLine("Node dequeued: " + headNode.nodeData);
-            headNode = headNode.nextNode;
-            queueLength -= 1;
+            if(queueLength>0) 
+            {
+                string nodeData = headNode.nodeData;
+                headNode = headNode.nextNode;
+                queueLength -= 1;
+                return nodeData;
+            }
+            else 
+            {
+                Console.WriteLine("Sorry, the queue is empty!");
+            }
+            return null;
+        }
+
+        public string peek() 
+        { 
+            if(queueLength>0) 
+            {
+                return headNode.nodeData;
+            }
+            else 
+            {
+                Console.WriteLine("The queue is empty! no value to peek at.");
+            }
+            return null;
         }
 
         //Prints out the contents of the queue
@@ -60,6 +83,21 @@ namespace Portfolio
                     currentNode = currentNode.nextNode;
                 }
             }
+        }
+
+        public string[] toArary() 
+        {
+            staticLen = queueLength;
+            string[] queueArray = new string[staticLen];
+            string valueDequeued;
+
+            for(int i = 0; i<staticLen;i++) 
+            {
+                valueDequeued = this.Dequeue();
+                queueArray[i] = valueDequeued;
+            }
+
+            return queueArray;
         }
 
     }
