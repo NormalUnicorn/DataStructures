@@ -9,8 +9,6 @@ namespace Huffman
     {
         public List<Node> values { get; set; } = new List<Node>();
 
-        public List<Node> sortedVals;
-
         //Function to work out the frequency(weight) of each character given an input
         public void getValues(string text) 
         {
@@ -53,7 +51,7 @@ namespace Huffman
         //Sorts a list of Nodes by weight, and combines the two lowest node weights as children of a new node
         public List<Node> sort(List<Node> nodeList) 
         {
-            sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
+            List<Node> sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
             return sortedVals;
         }
     }
