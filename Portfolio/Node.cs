@@ -11,7 +11,7 @@ namespace Portfolio
         public Node previousNode { get; set; }
         public string nodeData { get; set; }
 
-        //Used for Tree and Graph
+        //Used for Tree and Graph, spoilers never done
         public Node parentNode { get; set; }
         public Node[] childNode { get; set; }
         public int nodeWeight { get; set; }

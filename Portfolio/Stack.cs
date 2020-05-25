@@ -10,6 +10,8 @@ namespace Portfolio
         public Node tailNode { get; set; }
         public int stackLength { get; set; }
 
+        public int staticLen { get; set; }
+
         public Stack() 
         {
             headNode = null;
@@ -35,11 +37,41 @@ namespace Portfolio
 
         //Takes the node data from the tail node, and removes it from the stack
         //Really this should return the value instead of just printing it. Too bad!
-        public void Pull() 
+        public string Peek() 
         {
             Console.WriteLine("Value pulled: " + tailNode.nodeData);
+            return tailNode.nodeData;
+        }
+
+        public string Pull() 
+        {
+            string nodeData = tailNode.nodeData;
             tailNode = tailNode.nextNode;
-            stackLength -= 1;
+            //Console.WriteLine("new node: " + tailNode.nodeData);
+            stackLength--;
+            return nodeData;
+        }
+
+
+        //I didn't like MS' version having the array in reverse chronological order, ran into the issue with my huffman
+        public string[] toArray() 
+        {
+            staticLen = stackLength; //updating len with the pull method, so need a static version of it
+            string[] stackValues = new string[staticLen];
+            string valuePulled;
+
+            //for each node in the stack
+            for(int i=0;i<staticLen;i++) 
+            {
+                valuePulled = this.Pull();
+                //Console.WriteLine("Stack len: " + stackLength);
+                stackValues[i] = valuePulled;
+                //Console.WriteLine("Value pulled: " + valuePulled);
+            }
+
+            
+            Array.Reverse(stackValues);
+            return stackValues;
         }
 
 

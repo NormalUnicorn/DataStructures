@@ -15,7 +15,6 @@ namespace Huffman
             Stack<int> tempOut = new Stack<int>(); //this is needed because ms return stacks in reverse chronological order
             string tempOutString; //this is needed because ms return stacks in reverse chronological order, I could have used my own stack implementation but too bad!
             
-
             myHuffman.getValues(inputString); //create nodes of the chars from input string 
 
             //printing out the nodes
@@ -52,13 +51,14 @@ namespace Huffman
 
                 //used for bodged decompressing :)
                 compressed += "3";
-                Console.WriteLine(currentChar + " has been compressed to: " + tempOutString);
+                Console.WriteLine("The optimal huffman code for " + currentChar + " is: " + tempOutString); 
             }
             
             //output the compressed string
             Console.WriteLine(compressed);
 
             myTree.decompress(compressed);
+            myTree.decompression(compressed);
         }
 
         //

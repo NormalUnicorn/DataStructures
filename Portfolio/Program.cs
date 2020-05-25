@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Portfolio
 {
@@ -6,11 +7,12 @@ namespace Portfolio
     {
         static void Main(string[] args)
         {
-            int testing = 5; //Change this to change what gets tested
+            int testing = 0; //Change this to change what gets tested
             
             //Creating instances for testing
             Stack myStack = new Stack();
             Queue myQueue = new Queue();
+            List<string> testList = new List<string>();
 
             LinkedList myLinkedList = new LinkedList();
             DoubleLinkedList myDoubleLinkedList = new DoubleLinkedList();
@@ -24,7 +26,8 @@ namespace Portfolio
                 Console.WriteLine("Stack Testing: ");
                 
                 //Creating and adding nodes to stack
-                for (int i = 0; i < 5; i++)
+                //I'm aware that an issue is caused by entering only 1 node to the array, as the tail node is not set
+                for (int i = 0; i < 1; i++)
                 {
                     Console.WriteLine("Please input a node value to add to the stack: ");
                     string UserInput = Console.ReadLine();
@@ -35,6 +38,14 @@ namespace Portfolio
                 myStack.print();
                 myStack.Pull();
                 myStack.print();
+                myStack.Peek();
+                myStack.print();
+                testList.AddRange(myStack.toArray());
+                foreach(string text in testList) 
+                {
+                    Console.WriteLine("list text: " + text);
+                }
+
             }
 
             //Queue testing

@@ -162,5 +162,29 @@ namespace Huffman
             
         }
 
+        public string decompression(string path) 
+        {
+            string output = "";
+            Node currentNode = headNode;
+            foreach (char currentChar in path)
+            {
+                if (currentNode.nodeValue != '\0') 
+                {
+                    output += currentNode.nodeValue;
+                    currentNode = headNode;
+                }
+                else if (currentChar == '0') 
+                {
+                    currentNode = currentNode.lNode;
+                }
+                else if(currentChar == '1') 
+                {
+                    currentNode = currentNode.rNode;
+                }
+            }
+            Console.WriteLine(output);
+            return output;
+        }
+
     }
 }
