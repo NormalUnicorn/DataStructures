@@ -71,7 +71,7 @@ namespace Huffman
                 { 
                     headNode.rNode = nodeList[1];
                 }
-                catch (ArgumentOutOfRangeException outOfRange) 
+                catch (ArgumentOutOfRangeException outOfRange) //https://docs.microsoft.com/en-us/dotnet/api/system.argumentoutofrangeexception?view=netcore-3.1
                 {
                     Console.WriteLine("The text to compress only contains one letter");
                 }
@@ -94,7 +94,7 @@ namespace Huffman
             List<Node> visited = new List<Node>(); //List of visited nodes
             Stack<int> output = new Stack<int>(); //final output for that character
             bool flag = false; //flag indicating if node has been found
-            bool showTreeTraversal = true; //make this true if you would like to build the tree by hand, will show how the code is moving around the tree(warning, will spam console)
+            bool showTreeTraversal = false; //make this true if you would like to build the tree by hand, will show how the code is moving around the tree(warning, will spam console)
 
             while(!flag) //While not found
             {
@@ -165,20 +165,15 @@ namespace Huffman
         //better decompression, use this one instead of the horrible bodged one up top
         public string decompress(string path) 
         {
-            string output = "";
-            Node currentNode = headNode;
-            char currentChar = ' ';
-            for(int i=0; i<path.Length;i++)
-            {
-                currentChar = path[i];
-                Console.WriteLine("current char: " + currentChar);
-                if (currentNode.nodeValue != '\0') 
-                {
-                    output += currentNode.nodeValue;
-                    Console.WriteLine("output: " + output);
-                    currentNode = headNode;
-                }
-                else if (currentChar == '0') 
+
+            string output = ""; //output text
+            Node currentNode = headNode; //Start at the head of the tree duh
+
+            foreach(char currentChar in path) 
+            { 
+
+                //firsty, perform the movement denoted by the currentChar
+                if (currentChar == '0') 
                 {
                     currentNode = currentNode.lNode;
                 }
@@ -186,10 +181,18 @@ namespace Huffman
                 {
                     currentNode = currentNode.rNode;
                 }
+
+                //Now check if the node we moved to has a value or not, and if it does then add the value to the output and start at the head again
+                if (currentNode.nodeValue != '\0') 
+                {
+                    Console.WriteLine("currentVal: " + currentNode.nodeValue);
+                    output += currentNode.nodeValue;
+
+                    currentNode = headNode;
+                }
             }
             Console.WriteLine("output: " + output);
             return output;
         }
-
     }
 }

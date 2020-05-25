@@ -8,20 +8,24 @@ namespace Huffman
 
         static void Main(string[] args)
         {
+            //I tested my program agaist https://people.ok.ubc.ca/ylucet/DS/Huffman.html, when it comes to tree traversal, my tree traversal is flipped, if my tree says go right, go left on the tree generated here
+
             HuffmanLogic myHuffman = new HuffmanLogic();
             Tree myTree = new Tree();
-            string inputString = "aa"; //text to be compressed
+
+            string inputString = "This is placeholder text to see if my decoder still works or not"; //text to be compressed
             string compressed = ""; //final compressed text
+
             Stack<int> tempOut = new Stack<int>(); //this is needed because ms return stacks in reverse chronological order
             string tempOutString; //this is needed because ms return stacks in reverse chronological order, I could have used my own stack implementation but too bad!
             
             myHuffman.getValues(inputString); //create nodes of the chars from input string 
 
             //printing out the nodes
-            for (int i = 0; i < myHuffman.values.Count; i++) 
-            {
-                Console.WriteLine("Node: \nNode value: " + myHuffman.values[i].nodeValue + "\nNode weight: " + myHuffman.values[i].nodeWeight);
-            }
+            //for (int i = 0; i < myHuffman.values.Count; i++) 
+            //{
+            //    Console.WriteLine("Node: \nNode value: " + myHuffman.values[i].nodeValue + "\nNode weight: " + myHuffman.values[i].nodeWeight);
+            //}
             
             //creating tree
             myTree.createTree(myHuffman.sort(myHuffman.values));
