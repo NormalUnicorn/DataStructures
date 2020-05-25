@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Huffman
 {
-    class Tree : HuffmanLogic
+    class Tree
     {
 
         public Node headNode { get; set; } //the headnode in the tree
@@ -17,14 +18,21 @@ namespace Huffman
         //function that combines the two final nodes to make one tree, could have been in huffman. Too bad!
         public void createNodes(List<Node> nodesToSort)  
         {
-            headNode.lNode = values[0]; //Set lNode of headnode to the first Node in array
-            headNode.rNode = values[1]; //Set rNode of headnode to the second Node in array
+            headNode.lNode = nodesToSort[0]; //Set lNode of headnode to the first Node in array
+            headNode.rNode = nodesToSort[1]; //Set rNode of headnode to the second Node in array
 
             headNode.lNode.parentNode = headNode; //Making lNode parentNode point to headNode 
             headNode.rNode.parentNode = headNode; //Making rNode parentNode point to headNode
         }
 
+        //Takes in list of nodes, and sorts the list out by the node weight
+        public List<Node> sort(List<Node> nodeList)
+        {
+            List<Node> sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
+            return sortedVals;
+        }
 
+        //Takes in a list of nodes, makes the two lowest node weight nodes children of a new node, then adds the new node to the list, removing the children and resorting the list
         public void createTree(List<Node> nodeList) 
         {
 
@@ -62,7 +70,7 @@ namespace Huffman
 
             else 
             {
-                //if there are only 2 nodes in the array, then set the children of headNode to the two remaining nodes
+                //if there are only 2 nodes or less in the array, then set the children of headNode to the two or less remaining nodes
 
                 headNode.lNode = nodeList[0];
                 

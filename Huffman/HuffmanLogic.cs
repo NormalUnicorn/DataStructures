@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Linq;
 
 namespace Huffman
 {
@@ -49,10 +48,6 @@ namespace Huffman
         
         //this could go in huffman or tree, as huffman is reliant on the tree.
         //Sorts a list of Nodes by weight, and combines the two lowest node weights as children of a new node
-        public List<Node> sort(List<Node> nodeList) 
-        {
-            List<Node> sortedVals = nodeList.OrderBy(node => node.nodeWeight).ToList(); //https://stackoverflow.com/questions/1301822/how-to-sort-a-list-of-objects-by-a-specific-field-in-c 
-            return sortedVals;
-        }
+
     }
 }

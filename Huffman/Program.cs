@@ -35,10 +35,8 @@ namespace Huffman
                 //}
             
                 //creating tree
-                myTree.createTree(myHuffman.sort(myHuffman.values));
+                myTree.createTree(myTree.sort(myHuffman.values));
 
-
-                //myTree.createTree(myHuffman.sortedVals.ToArray());
 
                 //for each letter in the string
                 for (int i = 0; i < inputTextFile.Length; i++)
@@ -73,7 +71,7 @@ namespace Huffman
                 Console.WriteLine(compressed);
 
                 //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
-                System.IO.File.WriteAllText(@"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\outputCompressedText.txt", compressed);
+                System.IO.File.WriteAllText(@"E:\Documents\Github\Uni\DataStructures\Huffman\Text files\outputCompressedText.txt", compressed); //update the path for the output file
 
                 //decompress string to check correct output
                 myTree.decompress(compressed);
