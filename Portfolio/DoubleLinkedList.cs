@@ -20,17 +20,19 @@ namespace Portfolio
         //Adds node to start of the linkedlist
         public void appendStart(Node NodeToAdd)
         {
+            //if the list is empty, then we just need to set the headnode
             if(headNode == null) 
             {
                 headNode = NodeToAdd;
             }
+            //Otherwise, we need to move the headnode along one
             else 
             { 
                 headNode.previousNode = NodeToAdd;
                 NodeToAdd.nextNode = headNode;
                 headNode = NodeToAdd;
             }
-            listLength += 1;            
+            listLength++;            
         }
 
         //Adds node to the end of the linkedlist
@@ -39,16 +41,18 @@ namespace Portfolio
             Node currentNode = headNode;
             Node previousListNode = headNode;
 
+            //Get to the node before the tail node
             while (currentNode.nextNode != null)
             {
                 previousListNode = currentNode;
                 currentNode = currentNode.nextNode;
             }
 
+            //Update values
             currentNode.nextNode = NodeToAdd;
             tailNode = NodeToAdd;
             tailNode.previousNode = previousListNode;
-            listLength += 1;
+            listLength++;
         }
 
         //Used to check where to add the Node, either call the Start/End functions or go through the list to correct point
@@ -69,6 +73,7 @@ namespace Portfolio
                 NodeToAdd.nextNode = tempNode;
                 tempNode.previousNode = NodeToAdd;
                 NodeToAdd.previousNode = headNode;
+                listLength++;
             }
             else
             {
@@ -94,7 +99,7 @@ namespace Portfolio
             string returnVal = headNode.nodeData;
             headNode = headNode.nextNode;
             headNode.previousNode = null;
-            listLength -= 1;
+            listLength--;
             return returnVal;
         }
 
@@ -111,12 +116,13 @@ namespace Portfolio
             returnVal = tailNode.nodeData;
             CurrentNode.nextNode = null;
             tailNode = CurrentNode;
-            listLength -= 1;
+            listLength--;
             return returnVal;
         }
 
 
         //Used to check which node to remove from the list, either call Start/End or go through the list to correct point
+        //there is an issue when removing pos 1, where it doesn't properly get removed, as I don't update the head value
         public string remove(int removePos)
         {
             string returnVal;
@@ -144,6 +150,7 @@ namespace Portfolio
 
                 previousListNode.nextNode = currentNode.nextNode;
                 previousListNode.nextNode.previousNode = previousListNode;
+                listLength--;
             }
             else 
             {

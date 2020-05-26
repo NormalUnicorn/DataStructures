@@ -7,6 +7,8 @@ namespace Portfolio
 {
     class InsertionSort
     {
+        //Never got round to finishing this sorry 
+
         public int[] unsortedValues { get; set; } = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
         public int[] sortedValues { get; set; }
 

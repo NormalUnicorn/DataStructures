@@ -22,7 +22,7 @@ namespace Portfolio
         {
             NodeToAdd.nextNode = headNode;
             headNode = NodeToAdd;
-            listLength += 1;
+            listLength++;
         }
 
         //Adds node to the end of the linkedlist
@@ -37,7 +37,7 @@ namespace Portfolio
 
             currentNode.nextNode = NodeToAdd;
             tailNode = NodeToAdd;
-            listLength += 1;
+            listLength++;
         }
 
         //Used to check where to add the Node, either call the Start/End functions or go through the list to correct point
@@ -60,7 +60,7 @@ namespace Portfolio
                 }
                 NodeToAdd.nextNode = currentNode.nextNode;
                 currentNode.nextNode = NodeToAdd;
-                listLength += 1;
+                listLength++;
             }
         }
 
@@ -69,7 +69,7 @@ namespace Portfolio
         {
             string retunVal = headNode.nodeData;
             headNode = headNode.nextNode;
-            listLength -= 1;
+            listLength--;
             return retunVal;
         }
 
@@ -83,7 +83,8 @@ namespace Portfolio
                 CurrentNode = CurrentNode.nextNode;
             }
             CurrentNode.nextNode = null;
-            listLength -= 1;
+            tailNode = CurrentNode;
+            listLength--;
             return returnVal;
         }
 
@@ -111,7 +112,7 @@ namespace Portfolio
                 }
                 returnVal = currentNode.nodeData;
                 previousListNode.nextNode = currentNode.nextNode;
-                listLength -= 1;
+                listLength--;
             }
             else 
             {

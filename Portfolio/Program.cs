@@ -7,7 +7,8 @@ namespace Portfolio
     {
         static void Main(string[] args)
         {
-            int testing = 3; //Change this to change what gets tested
+            int testing = 2; //Change this to change what gets tested
+            //0- stack, 1-queue,2-ll,3-dll, 4-bubble sort
             
             //Creating instances for testing
             Stack myStack = new Stack();
@@ -90,8 +91,8 @@ namespace Portfolio
                 Console.WriteLine("Before removal calls");
                 myLinkedList.print();
 
-                myLinkedList.removeStart();
-                myLinkedList.removeEnd();
+                Console.WriteLine("Removed start value: " + myLinkedList.removeStart());
+                Console.WriteLine("Removed end value :" + myLinkedList.removeEnd());
 
                 myLinkedList.append(CreateNode("11"), 1); //Change the int here to change where the value gets appended
                 myLinkedList.remove(7);
@@ -114,7 +115,9 @@ namespace Portfolio
 
 
                 myDoubleLinkedList.print();
-                myDoubleLinkedList.remove(5);
+
+                Console.Write("Value removed: " + myDoubleLinkedList.remove(2));
+
                 myDoubleLinkedList.print();           
             }
 
